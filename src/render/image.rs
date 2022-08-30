@@ -3,7 +3,7 @@
 use crate::render::{Canvas, Pixel};
 use crate::types::Color;
 
-use image::{ImageBuffer, Luma, LumaA, Pixel as ImagePixel, Primitive, Rgb, Rgba};
+use image::{ImageBuffer, Luma, LumaA, Pixel as ImagePixel, Primitive};
 
 macro_rules! impl_pixel_for_image_pixel {
     ($p:ident<$s:ident>: $c:pat => $d:expr) => {
@@ -22,8 +22,8 @@ macro_rules! impl_pixel_for_image_pixel {
 
 impl_pixel_for_image_pixel! { Luma<S>: p => [p] }
 impl_pixel_for_image_pixel! { LumaA<S>: p => [p, S::max_value()] }
-impl_pixel_for_image_pixel! { Rgb<S>: p => [p, p, p] }
-impl_pixel_for_image_pixel! { Rgba<S>: p => [p, p, p, S::max_value()] }
+// impl_pixel_for_image_pixel! { Rgb<S>: p => [p, p, p] }
+// impl_pixel_for_image_pixel! { Rgba<S>: p => [p, p, p, S::max_value()] }
 
 impl<P: ImagePixel + 'static> Canvas for (P, ImageBuffer<P, Vec<P::Subpixel>>) {
     type Pixel = P;

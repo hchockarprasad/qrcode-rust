@@ -5,3 +5,5 @@
 *.o
 __pycache__
 Cargo.lock
+
+.idea
